@@ -6,4 +6,4 @@ inputs:
     description: 'Version to install'
 runs:
   using: 'node12'
-  main: 'lib/main.js'
+  main: 'src/main.js'
