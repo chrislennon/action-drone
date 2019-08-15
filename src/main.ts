@@ -65,4 +65,6 @@ function createFilename() {
   return filename
 }
 
-run(core.getInput('version'))
+const version = (core.getInput('version')) ? core.getInput('version') : false
+if (version) run(version)
+
