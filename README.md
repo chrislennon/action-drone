@@ -15,8 +15,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
       - uses: chrislennon/action-drone@v1
         with:
           version: '1.1.4'
+      - run: drone help
 ````
