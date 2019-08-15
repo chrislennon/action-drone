@@ -50,13 +50,13 @@ function createFilename() {
   let filename:string = 'drone'
   switch (osPlat) {
     case 'linux':
-      filename += '_linux_' + osArch
+      filename += '_linux_amd64'
       break;
     case 'darwin':
       filename += '_darwin_amd64'
       break;
     case 'win32':
-      filename += '_windows_' + osArch
+      filename += '_windows_amd64'
       break;
     default:
       throw new Error(`Unexpected OS '${osPlat}'`)
