@@ -1,9 +1,22 @@
-# JavaScript Action Template
+# action-drone
 
-This template offers an easy way to get started writing a javascript action with TypeScript compile time support, unit testing with Jest and using the GitHub Actions Toolkit.
+Action to install drone-cli and make it available to further steps
 
-## Getting Started
+## Usage
 
-See the walkthrough located [here](https://github.com/actions/toolkit/blob/master/docs/javascript-action.md).
+Example
+````yaml
+name: Test
 
-In addition to walking your through how to create an action, it also provides strategies for versioning, releasing and referencing your actions.
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: chrislennon/action-drone@v1
+        with:
+          version: '1.1.4'
+````
