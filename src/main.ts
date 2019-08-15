@@ -16,8 +16,7 @@ export async function run(version): Promise<void> {
 
       if (!toolPath) {
         const filename = createFilename()
-        const downloadUrl = 'https://github.com/drone/drone-cli/releases/download/v' + version + '/' + filename
-        console.log(downloadUrl)
+        const downloadUrl = `https://github.com/drone/drone-cli/releases/download/v${version}/${filename}`
         const downloadPath = await tc.downloadTool(downloadUrl)
         const extPath = await tc.extractTar(downloadPath)
         const cachedPath = await tc.cacheDir(extPath, 'drone', version)
