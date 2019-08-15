@@ -1,29 +1,29 @@
 import * as core from '@actions/core'
 import * as tc from '@actions/tool-cache'
-import * as os from 'os';
-import * as path from 'path';
+import * as os from 'os'
+import * as path from 'path'
 import { promisify } from 'util'
 import { exec } from 'child_process'
 
 const execP = promisify(exec)
-const osPlat: string = os.platform();
-const osArch: string = os.arch();
+const osPlat: string = os.platform()
+const osArch: string = os.arch()
 
 export async function run(version): Promise<void> {
     try {
-      let toolPath: string;
+      let toolPath: string
       toolPath = tc.find('drone', version)
 
       if (!toolPath) {
         const filename = createFilename()
         const downloadUrl = 'https://github.com/drone/drone-cli/releases/download/v' + version + '/' + filename
-
+        console.log(downloadUrl)
         const downloadPath = await tc.downloadTool(downloadUrl)
         const extPath = await tc.extractTar(downloadPath)
-        const cachedPath = await tc.cacheDir(extPath, 'drone', version);
+        const cachedPath = await tc.cacheDir(extPath, 'drone', version)
 
         if (osPlat != 'win32') {
-          toolPath = path.join(toolPath, 'bin');
+          toolPath = path.join(toolPath, 'bin')
         }
         core.addPath(cachedPath)
       }
@@ -37,7 +37,7 @@ export async function getDroneVersion(): Promise<string> {
   const toolPath = await tc.find('drone','*')
   const output = await execP(`${toolPath}/drone -v`)
   const droneVer = output.stdout
-  const regex = /(\d+\.)(\d+\.)(\d)/g;
+  const regex = /(\d+\.)(\d+\.)(\d)/g
   const cliVersion = droneVer.match(regex)
 
   if (cliVersion !== null){
@@ -59,7 +59,7 @@ function createFilename() {
       filename += '_windows_' + osArch
       break;
     default:
-      throw new Error(`Unexpected OS '${osPlat}'`);
+      throw new Error(`Unexpected OS '${osPlat}'`)
   }
   filename += '.tar.gz'
   return filename
