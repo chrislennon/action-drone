@@ -1,12 +1,15 @@
 {
   "name": "action-drone",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "Installs drone cli",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "publish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then npm run-script \"change-branch\"; else npm run-script \"create-publish\"; fi;",
+    "change-branch": "echo \"Should not publish on master\" && exit 1",
+    "create-publish": "npm i && npm build && git rm -r ./node_modules && rm -rf ./node_modules && npm i --production && git add. && echo \"Ready to commit\" exit 0"
   },
   "repository": {
     "type": "git",
