@@ -18,5 +18,8 @@ jobs:
       - uses: chrislennon/action-drone@v1
         with:
           version: '1.1.4'
-      - run: drone help
+      - run: drone info
+        env:
+          DRONE_SERVER: ${{ secrets.DRONE_SERVER }}
+          DRONE_TOKEN: ${{ secrets.DRONE_TOKEN }}
 ````

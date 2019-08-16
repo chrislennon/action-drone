@@ -1,6 +1,9 @@
 name: 'Drone Install Action'
 description: 'Installs Drone ClI'
 author: 'chrislennon'
+branding:
+  icon: 'terminal'
+  color: 'gray-dark'
 inputs:
   version:
     description: 'Version to install'
