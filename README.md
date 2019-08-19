@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: chrislennon/action-drone@v1
         with:
-          version: '1.1.4'
+          version: '0.8.1'
       - run: drone info
         env:
           DRONE_SERVER: ${{ secrets.DRONE_SERVER }}
