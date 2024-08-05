@@ -6,7 +6,7 @@ Action to install drone-cli and make it available to further steps
 
 Example
 ````yaml
-name: Test
+name: drone jun
 
 on:
   push
